@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow | Smart Todo App</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+                <h2>TaskFlow</h2>
+                <p>Stay Organized. Stay Productive.</p>
+            </div>
+
+        </div>
+
+        <button id="themeBtn">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
+    </nav>
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <h2>Filters</h2>
+
+            </div>
+
+            <button class="filter active" data-filter="all">
+                <i class="fa-solid fa-list"></i>
+                All Tasks
+                <span id="allCount">0</span>
+            </button>
+
+            <button class="filter" data-filter="active">
+                <i class="fa-regular fa-circle"></i>
+                Active
+                <span id="activeCount">0</span>
+            </button>
+
+            <button class="filter" data-filter="completed">
+                <i class="fa-solid fa-circle-check"></i>
+                Completed
+                <span id="completedCount">0</span>
+            </button>
+
+            <button id="clearCompleted">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Clear Completed
+
+            </button>
+
+            <div class="quote">
+
+                <i class="fa-solid fa-star"></i>
+
+                <p>
+
+                    "Discipline is choosing between what you want now and what you want most."
+
+                </p>
+
+            </div>
+
+        </aside>
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="content">
+
+            <!-- Task Input -->
+
+            <div class="task-input">
+
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What needs to be done?">
+
+                <input
+                    type="date"
+                    id="dueDate">
+
+                <select id="priority">
+
+                    <option value="Low">Low</option>
+
+                    <option value="Medium">Medium</option>
+
+                    <option value="High">High</option>
+
+                </select>
+
+                <button id="addTask">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Task
+
+                </button>
+
+            </div>
+
+            <!-- Search -->
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search tasks...">
+
+            </div>
+
+            <!-- Title -->
+
+            <div class="title-row">
+
+                <h2>All Tasks</h2>
+
+                <button id="sortDate">
+
+                    <i class="fa-solid fa-arrow-up-wide-short"></i>
+
+                    Sort
+
+                </button>
+
+            </div>
+
+            <!-- Dynamic Tasks -->
+
+            <div id="taskList">
+
+            </div>
+
+            <!-- Empty -->
+
+            <div id="emptyState">
+
+                <i class="fa-solid fa-seedling"></i>
+
+                <h2>No Tasks Yet</h2>
+
+                <p>Add your first task to get started.</p>
+
+            </div>
+
+        </section>
+
+        <!-- ================= RIGHT PANEL ================= -->
+
+        <aside class="stats">
+
+            <h2>Overview</h2>
+
+            <!-- Progress Circle -->
+
+            <div class="progress-card">
+
+                <div class="progress-circle">
+
+                    <svg width="180" height="180">
+
+                        <circle
+                            cx="90"
+                            cy="90"
+                            r="70"
+                            class="bg">
+
+                        </circle>
+
+                        <circle
+                            cx="90"
+                            cy="90"
+                            r="70"
+                            class="progress"
+                            id="progressCircle">
+
+                        </circle>
+
+                    </svg>
+
+                    <div class="progress-text">
+
+                        <h2 id="progressValue">
+
+                            0%
+
+                        </h2>
+
+                        <p>Completed</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Cards -->
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-list-check"></i>
+
+                <div>
+
+                    <h3>Total Tasks</h3>
+
+                    <span id="totalTasks">0</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-hourglass-half"></i>
+
+                <div>
+
+                    <h3>Active</h3>
+
+                    <span id="activeTasks">0</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-check"></i>
+
+                <div>
+
+                    <h3>Completed</h3>
+
+                    <span id="completedTasks">0</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <div>
+
+                    <h3>Completion Rate</h3>
+
+                    <span id="completionRate">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- ================= Toast ================= -->
+
+    <div id="toast">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span id="toastText">
+
+            Task Added Successfully
+
+        </span>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
